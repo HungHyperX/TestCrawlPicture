@@ -1,5 +1,7 @@
+import os
 import requests
 from bs4 import BeautifulSoup
+
 
 pageTarget = 'https://this-person-does-not-exist.com/'
 page = requests.get(pageTarget)
@@ -19,6 +21,9 @@ for image in images:
       picSrc = f"{pageTarget}/{imgData}"
       response = requests.get(picSrc)
 
-      file = open(filename, "wb")
+      img_path = os.path.join("CrawlPic", filename)
+
+      file = open(img_path, "wb")
       file.write(response.content)
+
       file.close()
